@@ -84,6 +84,7 @@ namespace DjmaxRandomSelectorV.ViewModels
 
             UpdateAddon(Setting.Mode);
             UpdateAddon(Setting.Aider);
+            UpdateAddon(Setting.Level);
         }
 
 
@@ -314,6 +315,8 @@ namespace DjmaxRandomSelectorV.ViewModels
         private const string FREESTYLE = "FREESTYLE";
         private const string ONLINE = "ONLINE";
         private const string AUTO_START = "AUTO START";
+        private const string BEGINNER = "BEGINNER";
+        private const string MASTER = "MASTER";
         #endregion        
         #region Except
         public int RecentsCount
@@ -409,6 +412,55 @@ namespace DjmaxRandomSelectorV.ViewModels
                 Setting.Aider = Aider.AutoStart;
             }
             UpdateAddon(Setting.Aider);
+        }
+        #endregion
+        #region Level
+        private string _levelText;
+        public string LevelText
+        {
+            get => _levelText;
+            set
+            {
+                _levelText = value;
+                NotifyOfPropertyChange(() => LevelText);
+            }
+        }
+        
+        private void UpdateAddon(Level level)
+        {
+            switch (level)
+            {
+                case Level.Off: LevelText = OFF; break;
+                case Level.Beginner: LevelText = BEGINNER; break;
+                case Level.Master: LevelText = MASTER; break;
+            }
+            AddonViewModel.SetBitmapImage(level);
+            AddonButton.SetBitmapImage(level);
+        }
+
+        public void PrevLevel()
+        {
+            if (Setting.Level == Level.Off)
+            {
+                Setting.Level = Level.Master;
+            }
+            else
+            {
+                Setting.Level--;
+            }
+            UpdateAddon(Setting.Level);
+        }
+        public void NextLevel()
+        {
+            if (Setting.Level == Level.Master)
+            {
+                Setting.Level = Level.Off;
+            }
+            else
+            {
+                Setting.Level++;
+            }
+            UpdateAddon(Setting.Level);
         }
         #endregion
         #endregion

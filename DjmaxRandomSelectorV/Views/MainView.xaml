@@ -135,10 +135,17 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="OFF"
+                        <Button x:Name="PrevLevel"
+                                Style="{StaticResource LeftArrowButton}"/>
+                        <TextBlock x:Name="LevelText"
+                                   Text="OFF"
+                                   Foreground="White"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Grid.Column="1"/>
+                        <Button x:Name="NextLevel"
+                                Grid.Column="2"
+                                Style="{StaticResource RightArrowButton}"/>
                     </Grid>
                 </Grid>
             </StackPanel>

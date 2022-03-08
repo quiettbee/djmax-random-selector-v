@@ -32,7 +32,8 @@
             <Image x:Name="AiderImage"
                    Source="pack://application:,,,/Images/addon_none.png"
                    Margin="2.5"/>
-            <Image Source="pack://application:,,,/Images/addon_none.png"
+            <Image x:Name="LevelImage"
+                   Source="pack://application:,,,/Images/addon_none.png"
                    Margin="2.5"/>
         </StackPanel>
     </Viewbox>
