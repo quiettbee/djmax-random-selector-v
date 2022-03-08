@@ -10,6 +10,7 @@ namespace DjmaxRandomSelectorV.Models
     {
         // Equipment
         public int RecentsCount { get; set; } = 5;
+        public Mode Mode { get; set; } = Mode.Freestyle;
         public Aider Aider { get; set; } = Aider.Off;
 
         // Setting

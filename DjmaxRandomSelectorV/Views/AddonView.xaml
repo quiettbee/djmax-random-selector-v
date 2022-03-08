@@ -26,7 +26,8 @@
                     </TextBlock.Foreground>
                 </TextBlock>
             </Grid>
-            <Image Source="pack://application:,,,/Images/mode_fs.png"
+            <Image x:Name="ModeImage"
+                   Source="pack://application:,,,/Images/mode_fs.png"
                    Margin="2.5"/>
             <Image x:Name="AiderImage"
                    Source="pack://application:,,,/Images/addon_none.png"

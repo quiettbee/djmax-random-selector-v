@@ -82,6 +82,7 @@ namespace DjmaxRandomSelectorV.ViewModels
             AddonViewModel = new AddonViewModel(Setting);
             AddonButton = new AddonViewModel(Setting);
 
+            UpdateAddon(Setting.Mode);
             UpdateAddon(Setting.Aider);
         }
 
@@ -308,6 +309,12 @@ namespace DjmaxRandomSelectorV.ViewModels
             _dockPanel.Effect = turnsOn ? _blur : null;
         }
         #endregion
+        #region Constants
+        private const string OFF = "OFF";
+        private const string FREESTYLE = "FREESTYLE";
+        private const string ONLINE = "ONLINE";
+        private const string AUTO_START = "AUTO START";
+        #endregion        
         #region Except
         public int RecentsCount
         {
@@ -321,9 +328,41 @@ namespace DjmaxRandomSelectorV.ViewModels
             }
         }
         #endregion
+        #region Mode
+        private string _modeText;
+        public string ModeText
+        {
+            get => _modeText;
+            set
+            {
+                _modeText = value;
+                NotifyOfPropertyChange(() => ModeText);
+            }
+        }
 
-        private const string OFF = "OFF";
-        private const string AUTO_START = "AUTO START";
+        private void UpdateAddon(Mode mode)
+        {
+            switch (mode)
+            {
+                case Mode.Freestyle: ModeText = FREESTYLE; break;
+                case Mode.Online: ModeText = ONLINE; break;
+            }
+            AddonViewModel.SetBitmapImage(mode);
+            AddonButton.SetBitmapImage(mode);
+        }
+        public void SwitchMode()
+        {
+            if (Setting.Mode == Mode.Freestyle)
+            {
+                Setting.Mode = Mode.Online;
+            }
+            else
+            {
+                Setting.Mode = Mode.Freestyle;
+            }
+            UpdateAddon(Setting.Mode);
+        }
+        #endregion
         #region Aider
         private string _aiderText;
         public string AiderText
@@ -346,6 +385,7 @@ namespace DjmaxRandomSelectorV.ViewModels
             AddonViewModel.SetBitmapImage(aider);
             AddonButton.SetBitmapImage(aider);
         }
+
         public void PrevAider()
         {
             if (Setting.Aider == Aider.Off)
@@ -371,7 +411,6 @@ namespace DjmaxRandomSelectorV.ViewModels
             UpdateAddon(Setting.Aider);
         }
         #endregion
-
         #endregion
 
 
